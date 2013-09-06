@@ -8,10 +8,17 @@ describe "Static pages" do
 
 
     end
+
     it "should have the title 'Home'" do
       visit '/static_pages/home'
       page.should have_selector('title',
-                                :text => "Ruby on Rails Tutorial Sample App | Home")
+                                :text => "Ruby on Rails Tutorial Sample App")
+    end
+
+    it "should not have a custom page title'" do
+      visit '/static_pages/home'
+      page.should have_selector('title',
+                                :text => "| Home")
     end
   end
 
@@ -53,7 +60,7 @@ describe "Static pages" do
     it "should have the title 'Contact Us'" do
       visit '/static_pages/contact'
       page.should have_selector('title',
-                                :text => "Ruby on Rails Tutorial Sample App | Contact Us")
+                                :text => "Ruby on Rails Tutorial Sample App")
     end
   end
 
