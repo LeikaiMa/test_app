@@ -9,7 +9,7 @@ describe "Static pages" do
 
 
     # end
-    before { visit root_path}
+    before { visit root_path }
     it {should have_selector('title',
                              text: full_title(''))}
     # it "should have the title 'Home'" do
