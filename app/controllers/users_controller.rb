@@ -37,4 +37,9 @@ class UsersController < ApplicationController
     	params.require(:user).permit(:name, :email, :password, :password_confirmation)
     	
     end
+
+    before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+    def signed_in_user
+      redirect_to signin_url, notice:"Please sign in." unless signed_in?
+    end
 end
