@@ -1,23 +1,3 @@
-# require 'spec_helper'
-
-# describe "UserPages" do
-#   subject {page}
-
-#   describe "signup page" do
-#     let(:user) {FactoryGirl.create(:user)}
-#     before {visit signup_path}
-
-#     it {should have_selector('h1', text: 'Sign up')}
-#     it {should have_selector('title', text: full_title('Sign up'))}
-#   end
-
-#   describe "profile page" do
-#     before { visit user_path(user) }
-#     it { should have_content(user.name)}
-#     it {should have_title(user.name)}
-#   end
-
-# end
 
 require 'spec_helper'
 
@@ -164,50 +144,50 @@ describe "User pages" do
       it { should have_content(user.microposts.count) }
     end
 
-    describe "follow/unfollow buttons" do
+    describe "accept/cancel buttons" do
       let(:other_user) {FactoryGirl.create(:user)}
       before { sign_in user }
-      describe "following a user" do
+      describe "accept a task" do
         before { visit user_path(other_user) }
-        it "should increment the followed user count" do
+        it "should increment the accepted task count" do
           expect do
-            click_button "Follow"
+            click_button "Accept"
           end.to change(user.followed_users, :count).by(1)
         end
 
-        it "should increment the other user's followers count" do
+        it "should increment the other user's accept tasks count" do
           expect do
-            click_button "Follow"
+            click_button "Accept"
           end.to change(user.followed_users, :count).by(1)          
         end
 
         describe "toggling the button" do
-          before { click_button "Follow" }
-          it { should have_xpath("//input[@value='Unfollow']") }
+          before { click_button "Accept" }
+          it { should have_xpath("//input[@value='Cancel']") }
           
         end
         
-        describe "unfollowing a user" do
+        describe "cancel a task" do
           before do
             user.follow!(other_user)
             visit user_path(other_user)
           end
 
-          it "should decrement the followed user count" do
+          it "should decrement the accepted task count" do
             expect do
-              click_button "Unfollow"
+              click_button "Cancel"
             end.to change(user.followed_users, :count).by(-1)
           end
 
-          it "should decrement the other user's followers count" do
+          it "should decrement the accepted task count" do
             expect do
-              click_button "Unfollow"
+              click_button "Cancel"
             end.to change(other_user.followers, :count).by(-1)
           end
 
           describe "toggling the button" do
-            before { click_button "Unfollow" }
-            it { should have_xpath("//input[@value='Follow']") }
+            before { click_button "Cancel" }
+            it { should have_xpath("//input[@value='Accept']") }
           end
         end
       end
@@ -215,12 +195,12 @@ describe "User pages" do
     end
   end
 
-  describe "following/followers" do
+  describe "accepted/canceled tasks" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
     before { user.follow!(other_user) }
 
-    describe "followed users" do
+    describe "accepted tasks" do
       before do
         sign_in user
         visit following_user_path(user)
@@ -231,7 +211,7 @@ describe "User pages" do
       it { should have_link(other_user.name, href: user_path(other_user)) }
     end
 
-    describe "followers" do
+    describe "rendered tasks" do
       before do
         sign_in other_user
         visit followers_user_path(other_user)
