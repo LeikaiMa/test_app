@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to Time Bank!"
       redirect_to @user
     else
       render 'new'
@@ -25,12 +25,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
+   
 
   end
 
   def update
-    # @user = User.find(params[:id])
+   
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       sign_in @user
