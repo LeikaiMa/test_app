@@ -4,10 +4,20 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
   def index
     @users = User.paginate(page: params[:page])
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render xml: @users }
+      format.json { render json: @users }
+    end
   end
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render xml: @user }
+      format.json { render json: @user }
+    end
   end
   def new
     @user = User.new
@@ -18,7 +28,12 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Time Bank!"
-      redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.xml  { render xml: @user }
+        format.json { render json: @user }
+      end
+      
     else
       render 'new'
     end
@@ -34,7 +49,12 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       sign_in @user
-      redirect_to @user
+      # redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.xml  { render xml: @user }
+        format.json { render json: @user }
+      end
     else
       render 'edit'
     end
@@ -43,18 +63,23 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed"  
-    redirect_to users_url
+    # redirect_to users_url
+    respond_to do |format|
+        format.html { redirect_to users_url }
+        format.xml  { render xml: @user }
+        format.json { render json: @user }
+    end
   end
 
   def following
-    @title = "Following"
+    @title = "Tasks from"
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
-    @title = "Followers"
+    @title = "Tasks to"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'

@@ -8,7 +8,7 @@ class MicropostsController < ApplicationController
   def create
   	@micropost = current_user.microposts.build(micropost_params)
   	if @micropost.save
-  		flash[:success] = "TimeTask created!"
+  		flash[:success] = "Time Task created!"
   		redirect_to root_url
   	else
   		@feed_item = []

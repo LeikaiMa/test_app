@@ -1,0 +1,7 @@
+<%= form_for(@micropost) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="filed">
+		<%= f.text_area :content, placeholder: "Compose new time task..." %>
+	</div>
+	<%= f.submit "Render", class: "btn btn-large btn-primary" %>
+<% end %>
