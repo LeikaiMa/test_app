@@ -126,7 +126,7 @@ describe "Authentication" do
       end
     end
 
-    describe "in the Microposts controller" do
+    describe "in the Tasks controller" do
       describe "submitting to the create action" do
         before { post microposts_path }
         specify {expect(response).to redirect_to(signin_path)}

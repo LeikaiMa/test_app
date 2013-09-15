@@ -8,7 +8,7 @@ describe Relationship do
   subject {relationship}
   it { should be_valid }
 
-  describe "follower methods" do
+  describe "Render methods" do
   	it { should respond_to(:follower) }
   	it { should respond_to(:followed) }
   	its(:follower) { should eq follower }
@@ -16,12 +16,12 @@ describe Relationship do
   	
   end
 
-  describe "when followed id is not present" do
+  describe "when accept user id is not present" do
   	before { relationship.followed_id = nil }
   	it { should_not be_valid }
   end
 
-  describe "when follower id is not present" do
+  describe "when render user id is not present" do
   	before { relationship.follower_id = nil }
   	it { should_not be_valid }
   	
