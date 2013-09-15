@@ -2,8 +2,110 @@
 
 
 <h1>Help</h1>
-<p>
-	  help
-</p>
+ <body>
+
+<div align="justify"><big><big>Brief introduction</big></big><br>
+<br>
+Time Bank is a website that people can share their free time
+with families, groups and communities.<br>
+<br>
+Signed in users can render their time tasks in this website. And
+others can accept the time tasks assigned on the website to earn
+time.<br>
+<br>
+<big><big>How to use</big></big><br>
+<br>
+1. When you are in the website, you need to click "sign up now"
+button to create a new user.<br>
+<br>
+2. Once you log in, the website will redirect you to your
+profile page.<br>
+<br>
+3. Click the right corner "Home". You can go to your own home
+page where you can render your time task. It will show on the
+right of this page. <br>
+You can also click the
+delete button in the tasks column and delete the task.<br>
+<br>
+4. In this page, you can see how many tasks you have accepted
+and how many tasks rendered.<br>
+<br>
+5. You can see all the users when you click the USERS in the
+right top corner.<br>
+<br>
+6. When you in the USERS page, you can click any user you want
+to see.<br>
+<br>
+7. In their user page, you can see their tasks and click the
+accept button to accept their tasks. And cancel button after you
+accept their tasks.<br>
+<br>
+8. In the right top corner, you can click the account dropdown
+button and click the settings button. Then you can change your
+password.<br>
+<br>
+<big><big><br>
+Requirements:</big></big><br>
+1.Create at least two controllers and two models that are
+related to each other.<br>
+<br>
+In this website, there are 4 controllers and 3 models.<br>
+<br>
+users_controller ---- users<br>
+<br>
+session_controller ---- signin and signout<br>
+<br>
+relationships_controller ---- accept and cancel tasks<br>
+<br>
+microposts_controller ---- tasks<br>
+<br>
+user model -- users<br>
+<br>
+microposts model --- tasks<br>
+<br>
+relationship --- accepted tasks relationship between users<br>
+<br>
+<br>
+user is one to many relationship to tasks<br>
+<br>
+users connect each other through a relationship table and use
+user_id as the foreign key<br>
+<br>
+2. Use migrations to incrementally build your database.<br>
+<br>
+Check the db/migrate<br>
+<br>
+3. Write unit, functional, and integration tests for the more
+interesting parts of your system.<br>
+<br>
+all the tests file are in the spec folder<br>
+<br>
+unit tests are in models folder<br>
+<br>
+functional tests are in the controllers folder<br>
+<br>
+integration tests are in the requests folder like
+authentication_pages_spec.rb<br>
+<br>
+4. Have one AJAX operation.<br>
+<br>
+Click the users button on the right top corner. And choose
+anyone in the list.<br>
+The accept/cancel toggle button is made by AJAX<br>
+<br>
+Check the code in _follow.html.erb and _unfollow.html.erb and
+two other .js.erb file in views/relationships/<br>
+<br>
+5. Have one REST API and be able to test it with an XML request<br>
+Check the userscontroller. <br>
+<br>
+You can use REST API here. <br>
+<br>
+e.g. http://localhost:3000/users/1.xml<br>
+<br>
+The user information will be returned to the website page.<br>
+</div>
+</div>
+</body>
 
 
